@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+ http://www.springframework.org/schema/mvc
+ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="com.xworkz.securepassword"></context:component-scan>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<!-- <property name="suffix" value=".*"></property> -->
+	</bean>
+
+	<bean id="propertySource"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:properties/application.properties</value>
+				<value>classpath:properties/mail.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="url" value="${datasource.url}"></property>
+		<property name="username" value="${datasource.username}"></property>
+		<property name="password" value="${datasource.password}"></property>
+		<property name="driverClassName" value="${datasource.driverClassName}"></property>
+	</bean>
+
+	<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="lsfb" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- <property name="configLocations" value="classpath:resources/hibernate-config/hibernate.cfg.xml"></property> -->
+
+		<property name="hibernateProperties" ref="properties"></property>
+		<property name="dataSource" ref="datasource"></property>
+		<property name="packagesToScan" value="com.xworkz.securepassword.entity"></property>
+	</bean>
+
+	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+		<property name="host" value="${smtp.host}" /> <property name="port" value="${smtp.port}" 
+		/> <property name="username" value="${smtp.user}" /> <property name="password" 
+		value="${smtp.pass}" /> <property name="javaMailProperties"> <props> <prop 
+		key="mail.transport.protocol">smtp</prop> <prop key="mail.smtp.auth">true</prop> 
+		<prop key="mail.smtp.starttls.enable">true</prop> </props> </property> </bean> -->
+
+	<bean id="implMailSender" class="com.xworkz.securepassword.email.JavaMAilSenderImplement">
+		<constructor-arg value="${smtp.pass}"></constructor-arg>
+		<property name="host" value="${smtp.host}" />
+		<property name="port" value="${smtp.port}" />
+		<property name="username" value="${smtp.user}" />
+		<property name="javaMailProperties">
+			<!-- additional properties specific to JavaMail -->
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
+
+	<bean id="mailMessage" class=" org.springframework.mail.SimpleMailMessage ">
+	</bean>
+
+</beans>

@@ -1,0 +1,93 @@
+*{
+    margin: 0px;
+    padding:0px;
+    box-sizing: border-box;
+  }
+
+
+body{
+    font : 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    font-family: 'Signika', sans-serif;
+
+}
+.bookstore{
+    margin:0;
+    padding-left:0;
+}
+header{
+    
+    min-height:80vh;
+     background-repeat:no-repeat; 
+    background-size: cover;
+   color:#fff;
+}
+h1{
+    position: absolute;
+    top: 10%;
+    left: 33%;
+    text-align:center; 
+}
+.jumbo{
+    font-family: 'Flamenco', cursive;
+    color:#fff;
+  }
+ 
+  .bg-color{
+      background-color:rgba(51, 110, 123, 1) !important;
+  }
+  #about{
+     
+      padding:60px 50px;
+  }
+  .about-details{
+      color:#fff;
+      text-align:center;
+  }
+  .con{
+      margin:0;
+      padding:0;
+  }
+.zoom:hover {
+    -ms-transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    transform: scale(1.2);
+}
+.zoom{
+    transition: transform .2s;
+}
+.bg-con{
+    background-color:rgba(232, 236, 241, 1);
+}
+.img-size{
+    width: 400px;
+    max-height: 150px;
+}
+footer{
+	margin-top:70px;
+}
+.footer-bg{
+    background-color:blue;
+    text-align:center;
+    padding:8px 12px;
+}
+.book-action{
+    background: #2C3E50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4CA1AF, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    font-size:20px;
+    text-align:center;
+
+    line-height: 1.5em;
+    color:#111;
+    word-spacing: .08em;
+
+}
+.reading-book{
+    
+    margin:0 10px;
+}
+.contact{
+margin-left:30px;
+}
